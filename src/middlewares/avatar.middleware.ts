@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import CreateAvatar from "../protocols.js";
+import {CreateAvatar} from "../protocols.js";
 import { createAvatarSchema } from "../schemas/avatar.schema.js";
 
 export function avatarValidate(

@@ -5,4 +5,11 @@ type CreateAvatar = {
   idCategory?: number;
 };
 
-export default CreateAvatar;
+type Avatar = {
+  name: string;
+  age: number;
+  superPower: string;
+  idCategory?: number;
+};
+
+export { CreateAvatar, Avatar };
