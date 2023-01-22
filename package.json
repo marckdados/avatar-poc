@@ -1,0 +1,30 @@
+{
+  "name": "typescript-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marckdados/typescript-poc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marckdados/typescript-poc/issues"
+  },
+  "homepage": "https://github.com/marckdados/typescript-poc#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
