@@ -6,7 +6,7 @@ export function categoryValidate(
   req: Request,
   res: Response,
   next: NextFunction
-) {
+) : Response {
   const category = req.body as Category;
 
   const { error } = categorySchema.validate(category, { abortEarly: false });
