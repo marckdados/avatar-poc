@@ -85,3 +85,20 @@ export async function putAvatar(
     return error;
   }
 }
+
+export async function deleteAvatar({ id }: Id): Promise<QueryResult<Id>> {
+  try {
+    await connection.query(
+      `
+        DELETE FROM
+          avatars
+        WHERE
+          id=$1
+      `,
+      [id]
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}

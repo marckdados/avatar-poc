@@ -35,3 +35,4 @@ export function updateAvatarValidate(
   res.locals.avatars = avatar;
   next();
 }
+
