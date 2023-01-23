@@ -2,12 +2,15 @@ import { QueryResult } from "pg";
 import { Avatar, CreateAvatar, Id, UpdateAvatar } from "../protocols.js";
 import {
   deleteAvatar,
+  getAvatarFilter,
   postAvatar,
   putAvatar,
   searchIdAvatar,
 } from "../repositores/avatar.repositore.js";
 
-export async function createAvatarRules(avatar: CreateAvatar) : Promise<QueryResult<Avatar>>{
+export async function createAvatarRules(
+  avatar: CreateAvatar
+): Promise<QueryResult<Avatar>> {
   const { name, age, superPower, idCategory } = avatar;
   try {
     await postAvatar(name, age, superPower, idCategory);
@@ -18,7 +21,22 @@ export async function createAvatarRules(avatar: CreateAvatar) : Promise<QueryRes
   }
 }
 
-export async function updateAvatarRules(id: Id, avatar: UpdateAvatar) : Promise<QueryResult<Avatar>>{
+export async function filterAvatarRules(
+  name: string
+): Promise<QueryResult<Avatar>> {
+  try {
+    const result = await getAvatarFilter(name);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+export async function updateAvatarRules(
+  id: Id,
+  avatar: UpdateAvatar
+): Promise<QueryResult<Avatar>> {
   const { name, age, superPower, idCategory } = avatar;
   try {
     const idExists = await searchIdAvatar(id);

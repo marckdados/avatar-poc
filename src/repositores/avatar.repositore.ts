@@ -88,7 +88,7 @@ export async function putAvatar(
 
 export async function deleteAvatar({ id }: Id): Promise<QueryResult<Id>> {
   try {
-    await connection.query(
+    return await connection.query(
       `
         DELETE FROM
           avatars
@@ -96,6 +96,22 @@ export async function deleteAvatar({ id }: Id): Promise<QueryResult<Id>> {
           id=$1
       `,
       [id]
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+export async function getAvatarFilter(
+  name: string
+): Promise<QueryResult<Avatar>> {
+  try {
+    return await connection.query(
+      `
+        SELECT * FROM avatars WHERE name ILIKE $1 ;
+      `,
+      [name + '%']
     );
   } catch (error) {
     console.log(error);

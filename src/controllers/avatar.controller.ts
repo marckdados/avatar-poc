@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { Avatar, CreateAvatar, Id, UpdateAvatar } from "../protocols.js";
+import { Avatar, CreateAvatar, Id, Name, UpdateAvatar } from "../protocols.js";
 import {
   createAvatarRules,
   deleteAvatarRules,
+  filterAvatarRules,
   updateAvatarRules,
 } from "../services/avatar.services.js";
 
@@ -27,7 +28,12 @@ export async function listAvatars(
   req: Request,
   res: Response
 ): Promise<QueryResultRow> {
+  const { name } = req.query as Name;
   try {
+    if (name !== undefined) {
+      const avatarPerName = await filterAvatarRules(name);
+      return res.status(200).send(avatarPerName.rows);
+    }
     const avatars = await getAvatars();
     return res.status(200).send(avatars.rows);
   } catch (error) {
@@ -41,7 +47,9 @@ export async function updateAvatarPerId(
   res: Response
 ): Promise<QueryResultRow> {
   const id = req.params as Id;
+
   const avatar = res.locals.avatars as UpdateAvatar;
+
   try {
     await updateAvatarRules(id, avatar);
     return res.sendStatus(200);
