@@ -1,4 +1,4 @@
-import CreateAvatar from "../protocols.js";
+import {CreateAvatar} from "../protocols.js";
 import { postAvatar } from "../repositores/avatar.repositore.js";
 
 export async function createAvatarRules(avatar: CreateAvatar) {
