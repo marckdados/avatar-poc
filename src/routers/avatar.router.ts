@@ -6,5 +6,6 @@ const router = Router();
 
 router.post("/avatar", avatarValidate, createAvatar);
 router.get("/avatar", listAvatars);
+router.put("/avatar/:id")
 
 export default router;

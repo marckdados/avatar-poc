@@ -7,4 +7,11 @@ const createAvatarSchema = joi.object({
   idCategory: joi.number().min(1).max(3).default(1),
 });
 
-export { createAvatarSchema };
+const updateAvatarSchema = joi.object({
+  name: joi.string(),
+  age: joi.number(),
+  superPower: joi.string(),
+  idCategory: joi.number(),
+});
+
+export { createAvatarSchema, updateAvatarSchema };
