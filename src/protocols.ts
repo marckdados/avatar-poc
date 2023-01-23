@@ -12,4 +12,8 @@ type Avatar = {
   idCategory?: number;
 };
 
-export { CreateAvatar, Avatar };
+type Category = {
+  name: string;
+};
+
+export { CreateAvatar, Avatar, Category };
