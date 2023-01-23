@@ -45,12 +45,12 @@ export async function getAvatars(): Promise<QueryResult<Avatar>> {
   }
 }
 
-export async function searchIdAvatar(id: Id): Promise<QueryResult<Avatar>> {
+export async function searchIdAvatar({ id }: Id): Promise<QueryResult<Avatar>> {
   try {
     return connection.query(
       `
         SELECT * FROM 
-          users 
+          avatars 
         WHERE 
           id=$1;
       `,
@@ -62,7 +62,7 @@ export async function searchIdAvatar(id: Id): Promise<QueryResult<Avatar>> {
   }
 }
 export async function putAvatar(
-  id: Id,
+  { id }: Id,
   name?: string,
   age?: number,
   superPower?: string,
@@ -74,10 +74,11 @@ export async function putAvatar(
         UPDATE
           avatars
         SET
-          (name=$2, age=$3, "superPower"=$4, "idCategory"=$5)
+          name=$2, age=$3, "superPower"=$4, "idCategory"=$5
         WHERE
           id=$1
-      `,[id, name, age, superPower, idCategory]
+      `,
+      [id, name, age, superPower, idCategory]
     );
   } catch (error) {
     console.log(error);

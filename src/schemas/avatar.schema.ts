@@ -8,10 +8,10 @@ const createAvatarSchema = joi.object({
 });
 
 const updateAvatarSchema = joi.object({
-  name: joi.string(),
-  age: joi.number(),
-  superPower: joi.string(),
-  idCategory: joi.number(),
+  name: joi.string().min(3).required(),
+  age: joi.number().min(0).required(),
+  superPower: joi.string().min(3).required(),
+  idCategory: joi.number().min(1).max(3).required(),
 });
 
 export { createAvatarSchema, updateAvatarSchema };
