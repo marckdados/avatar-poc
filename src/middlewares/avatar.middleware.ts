@@ -9,7 +9,7 @@ export function avatarValidate(
   req: Request,
   res: Response,
   next: NextFunction
-) {
+): Response {
   const avatar = req.body as CreateAvatar;
 
   const { error } = createAvatarSchema.validate(avatar, { abortEarly: false });
@@ -24,7 +24,7 @@ export function updateAvatarValidate(
   req: Request,
   res: Response,
   next: NextFunction
-) {
+): Response {
   const { id } = req.params as Id;
   const avatar = req.body as UpdateAvatar;
 
@@ -35,4 +35,3 @@ export function updateAvatarValidate(
   res.locals.avatars = avatar;
   next();
 }
-

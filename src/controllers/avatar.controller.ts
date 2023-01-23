@@ -7,9 +7,12 @@ import {
 } from "../services/avatar.services.js";
 
 import { getAvatars } from "../repositores/avatar.repositore.js";
-import { QueryResult, QueryResultRow } from "pg";
+import { QueryResultRow } from "pg";
 
-export async function createAvatar(req: Request, res: Response) {
+export async function createAvatar(
+  req: Request,
+  res: Response
+): Promise<QueryResultRow> {
   const avatar = res.locals.avatars as CreateAvatar;
   try {
     await createAvatarRules(avatar);
@@ -20,7 +23,10 @@ export async function createAvatar(req: Request, res: Response) {
   }
 }
 
-export async function listAvatars(req: Request, res: Response) : Promise<QueryResultRow> {
+export async function listAvatars(
+  req: Request,
+  res: Response
+): Promise<QueryResultRow> {
   try {
     const avatars = await getAvatars();
     return res.status(200).send(avatars.rows);
@@ -30,7 +36,10 @@ export async function listAvatars(req: Request, res: Response) : Promise<QueryRe
   }
 }
 
-export async function updateAvatarPerId(req: Request, res: Response) {
+export async function updateAvatarPerId(
+  req: Request,
+  res: Response
+): Promise<QueryResultRow> {
   const id = req.params as Id;
   const avatar = res.locals.avatars as UpdateAvatar;
   try {
@@ -42,7 +51,10 @@ export async function updateAvatarPerId(req: Request, res: Response) {
   }
 }
 
-export async function deleteAvatarPerId(req: Request, res: Response) {
+export async function deleteAvatarPerId(
+  req: Request,
+  res: Response
+): Promise<QueryResultRow> {
   const id = req.params as Id;
   try {
     await deleteAvatarRules(id);
